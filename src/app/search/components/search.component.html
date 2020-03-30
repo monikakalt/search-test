@@ -1,36 +1,35 @@
-<!-- This is just a placeholder. Feel free to do here whatever you would like to. -->
-<h1>Search for customers:</h1>
 <div>
-  <input type="text">
-  <input type="submit" value="Search" (click)="executeSearch()">
-  <input type="submit" value="Clear" (click)="clearSearch()">
-</div>
-<div *ngIf="hasResults">
-  <ul>
-    <li>
-      😎 Arnie Wightweiß
-    </li>
-    <li>
-      🏭 OBM 879665465464
-    </li>
-    <li>
-      😎 Jackie Chen
-    </li>
-    <li>
-      😎 Dolphicco Lundgerinio
-    </li>
-    <li>
-      🏭 Fuhitsu 894844410
-    </li>
-    <li>
-      😎 Jason Statbeef
-    </li>
-    <li>
-      😎 Sylvester Horse
-    </li>
-    <li>
-      🏭 Qompaq 84666884118
-    </li>
-  </ul>
-  <button>Save</button>
+   <h1>Search for customers:</h1>
+   <div>
+      <input type="text" [(ngModel)]="searchQuery" placeholder="Search">
+      <button class="button button-primary" (click)="searchQueryChanged()">Search</button>
+      <button class="button button-clear" (click)="clearSearch()">Clear</button>
+      <button class="button button-primary" *ngIf="hasResults" (click)="export()">Export</button>
+   </div>
+   <app-spinner #spinner></app-spinner>
+   <div class="table-container" *ngIf="hasResults">
+      <table>
+         <thead>
+            <tr>
+               <th>No.</th>
+               <th>ID</th>
+               <th></th>
+               <th> Name</th>
+               <th>VAT</th>
+               <th>PersonId</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr *ngFor="let item; let i = index of resultModel">
+               <td>{{ i + 1 }}</td>
+               <td>{{ item.id }}</td>
+               <td class="icon" *ngIf="item.personId"><img src="../../../assets/person.svg"></td>
+               <td class="icon" *ngIf="item.vat"><img src="../../../assets/business.svg"></td>
+               <td>{{ item.name }}</td>
+               <td>{{ item.vat}}</td>
+               <td>{{ item.personId }}</td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
 </div>
