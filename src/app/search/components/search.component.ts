@@ -36,6 +36,8 @@ export class SearchComponent {
     if (this.spinner) {
       this.spinner.setSpinner(true);
     }
+    this.resultModel = [];
+    this.hasResults = false;
     this.executeSearch();
   }
 
